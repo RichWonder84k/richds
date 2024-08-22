@@ -25,6 +25,32 @@
 
 
 <script disable-devtool-auto='' src='https://cdn.jsdelivr.net/npm/disable-devtool@latest'></script>
+        <script>
+    // Disable right-click context menu
+    document.addEventListener('contextmenu', function(event) {
+        event.preventDefault();
+        // Show ad container
+        document.getElementById('ad-container').style.display = 'block';
+    });
+
+    // Optional: Disable certain key combinations often used for developer tools
+    document.addEventListener('keydown', function(event) {
+        // Disable F12 and Ctrl+Shift+I
+        if (event.key === 'F12' || (event.ctrlKey && event.shiftKey && event.key === 'I')) {
+            event.preventDefault();
+        }
+    });
+
+    // Detect if developer tools is opened by checking window.innerWidth
+    var threshold = 160; // adjust if needed
+    function detectDevTools() {
+        if (window.innerWidth - document.documentElement.clientWidth > threshold) {
+            document.getElementById('ad-container').style.display = 'block';
+        }
+    }
+    window.addEventListener('resize', detectDevTools);
+    detectDevTools(); // Check on load
+</script>
         
  <iframe id="iframe" allowfullscreen="allowfullscreen" allowtransparency="true" frameborder="0" height="100%" marginheight="0" marginwidth="0" sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation" src width="100%"></iframe> 
 
