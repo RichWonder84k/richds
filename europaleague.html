@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orix Tv</title>
+    <link href="https://fonts.googleapis.com/css2?family=Changa:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+    <style>
+      body {
+        font-family: 'Neo Sans Arabic', 'Changa', 'Segoe UI', sans-serif;
+      }
+
+      .match-list {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin: 20px auto;
+      }
+
+      .match {
+        background-color: #191d2d;
+        color: #e4eeff;
+        padding: 4px 0;
+        margin: 1px 0;
+        border-radius: 5px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .match img {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+      }
+
+      /* Modal styles */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 999; /* Increased z-index */
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        max-width: 800px;
+        height: 80vh; /* Responsive height */
+        overflow-y: auto;
+        background-color: rgba(0, 0, 0, 0.9); /* Ensure background */
+        border-radius: 10px;
+      }
+
+      .modal-content {
+        position: relative;
+        background-color: #000;
+        border-radius: 10px;
+        padding-bottom: 15px; /* Space for close button */
+      }
+
+      .modal-header {
+        background-color: #552a86;
+        color: #fff;
+        font-size: 1.2em;
+        text-align: center;
+        padding: 10px;
+        border-radius: 10px 10px 0 0;
+      }
+
+      .close-btn {
+        color: #c4c4c4;
+        position: absolute;
+        top: 6px;
+        right: 15px;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .modal iframe {
+        width: 100%;
+        height: 56.25vw;
+        border: none;
+        max-height: 500px;
+        border-radius: 0 0 10px 10px;
+      }
+
+      @media (max-width: 768px) {
+        .modal {
+          width: 95%;
+          height: 75vh; /* Adjust for smaller screens */
+        }
+
+        .modal iframe {
+          height: 50vh; /* Maintain ratio */
+        }
+      }
+
+      @media (max-width: 375px) {
+        .modal {
+          width: 90%;
+          height: 70vh; /* Adjust for smaller screens */
+        }
+
+        .modal iframe {
+          height: 40vh; /* Maintain ratio */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="writer-css">
+      <span class="typewriter" id="typewriterText"></span>
+    </h1>
+    <div class="mtch-anno">Use either link 1, 2, or 3 on the player.</div>
+
+    <!-- Match List -->
+    <div class="match-list">
+      <!-- Match 1 -->
+      <div
+        class="match"
+        onclick="openModal('https://richwonder84k.github.io/richds/eplplayer1.html', 'Southampton vs Manchester United')"
+      >
+        <span class="evmat">11:30 Southampton vs Manchester United</span>
+        <span class="emat"><img src="https://richwonder84k.github.io/richds/01England.jpg" alt="ENG logo" /></span>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <div id="matchName" class="modal-header"></div>
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <iframe id="modalIframe" src="" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <script>
+      function openModal(src, matchName) {
+        const modal = document.getElementById('myModal');
+        const iframe = document.getElementById('modalIframe');
+        const matchHeader = document.getElementById('matchName');
+
+        iframe.src = src;
+        matchHeader.textContent = matchName;
+        modal.style.display = 'block';
+      }
+
+      function closeModal() {
+        const modal = document.getElementById('myModal');
+        const iframe = document.getElementById('modalIframe');
+
+        iframe.src = ''; // Stop the video when modal is closed
+        modal.style.display = 'none';
+      }
+
+      // Close modal when clicking outside of it
+      window.onclick = function(event) {
+        const modal = document.getElementById('myModal');
+        if (event.target == modal) {
+          closeModal();
+        }
+      };
+    </script>
+  </body>
+</html>
