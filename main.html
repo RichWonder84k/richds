@@ -1,278 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Orix TV</title>
+    <title>Orix Tv</title>
     <link href="https://fonts.googleapis.com/css2?family=Changa:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <style>
-      body {
-        font-family: 'Neo Sans Arabic', 'Changa', 'Segoe UI', sans-serif;
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        background-color: #f0f0f0;
-      }
+        body {
+            font-family: 'Neo Sans Arabic', 'Changa', 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
-      /* Header Bar */
-      .header {
-        background-color: #191d2d;
-        color: white;
-        text-align: center;
-        padding: 15px;
-        position: fixed;
-        top: 0;
-        width: 100%;
-        z-index: 99;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
+        header {
+            background-color: #552a86;
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+        }
 
-      .header .logo {
-        font-size: 1.5em;
-        font-weight: bold;
-      }
+        .match-list {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin: 20px auto;
+        }
 
-      .header .nav-links {
-        display: flex;
-        gap: 15px;
-      }
-
-      .header .nav-links a {
-        color: white;
-        text-decoration: none;
-        font-weight: bold;
-      }
-
-      /* Footer */
-      .footer {
-        background-color: #191d2d;
-        color: white;
-        text-align: center;
-        padding: 20px;
-        margin-top: 20px;
-        position: relative;
-        bottom: 0;
-        width: 100%;
-      }
-
-      .footer .social-icons {
-        margin-top: 10px;
-      }
-
-      .footer .social-icons a {
-        color: white;
-        font-size: 20px;
-        margin: 0 10px;
-        text-decoration: none;
-      }
-
-      .match-list {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        margin: 100px auto 20px auto; /* Added margin-top to compensate for fixed header */
-      }
-
-      .match {
-        background-color: #191d2d;
-        color: #e4eeff;
-        padding: 4px 0;
-        margin: 1px 0;
-        border-radius: 5px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-
-      span.evmat {
-        margin-left: 6px;
-      }
-
-      span.emat {
-        margin-right: 4px;
-      }
-
-      .emat img {
-        width: 20px !important;
-        height: 20px !important;
-        border-radius: 15px !important;
-        display: flex;
-        justify-content: center;
-      }
-
-      .mtch-anno {
-        text-align: center;
-        margin-bottom: -20px;
-        margin-top: -10px;
-        font-weight: bold;
-      }
-
-      .dat-date {
-        text-align: center;
-        background-color: #969799;
-        border-radius: 6px;
-        margin: 1px;
-      }
-
-      .modal {
-        display: none;
-        position: fixed;
-        z-index: 100;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        width: 80%;
-        max-width: 800px;
-      }
-
-      .modal-content {
-        background-color: #000;
-        position: relative;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-      }
-
-      .modal-header {
-        background-color: #552a86;
-        color: #fff;
-        font-size: 1.2em;
-        text-align: center;
-        padding: 10px;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-      }
-
-      .close-btn {
-        color: #c4c4c4;
-        position: absolute;
-        top: 6px;
-        right: 15px;
-        font-size: 28px;
-        font-weight: bold;
-      }
-
-      .close-btn:hover,
-      .close-btn:focus {
-        color: black;
-        cursor: pointer;
-      }
-
-      .modal iframe {
-        width: 100%;
-        height: 56.25vw;
-        border: none;
-        max-height: 500px;
-      }
-
-      @media (max-width: 768px) {
         .match {
-          font-size: 15px;
-          text-align: center;
+            background-color: #191d2d;
+            color: #e4eeff;
+            padding: 4px 0;
+            margin: 1px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        span.evmat {
+            margin-left: 6px;
+        }
+
+        span.emat {
+            margin-right: 4px;
+        }
+
+        .emat img {
+            width: 20px !important;
+            height: 20px !important;
+            border-radius: 15px !important;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+        }
+
+        .mtch-anno {
+            text-align: center;
+            margin-bottom: -20px;
+            margin-top: -10px;
+            font-weight: bold;
+        }
+
+        .dat-date {
+            text-align: center;
+            background-color: #969799;
+            border-radius: 6px;
+            margin: 1px;
         }
 
         .modal {
-          width: 95%;
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 50%;
+            top: 48%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 800px;
+            height: auto;
+        }
+
+        .modal-content {
+            background-color: #000;
+            position: relative;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .modal-header {
+            background-color: #552a86;
+            color: #fff;
+            font-size: 1.2em;
+            text-align: center;
+            padding: 10px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .close-btn {
+            color: #c4c4c4;
+            position: absolute;
+            top: 6px;
+            right: 15px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close-btn:hover,
+        .close-btn:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
         }
 
         .modal iframe {
-          height: 56.25vw;
-        }
-      }
-
-      @media (max-width: 375px) {
-        .match {
-          font-size: 14px;
-          text-align: left;
-          font-weight: 500;
+            width: 100%;
+            height: 56.25vw;
+            border: none;
+            max-height: 500px;
         }
 
-        .modal {
-          width: 95%;
+        footer {
+            background-color: #191d2d;
+            color: #e4eeff;
+            text-align: center;
+            padding: 10px 0;
         }
 
-        .modal iframe {
-          height: 56.25vw;
+        footer a {
+            color: #e4eeff;
+            text-decoration: none;
+            margin: 0 15px;
         }
-      }
+
+        @media (max-width: 768px) {
+            .match {
+                font-size: 15px;
+                text-align: center;
+                padding: 4px 0;
+            }
+            .modal {
+                width: 95%;
+            }
+            .modal iframe {
+                height: 56.25vw; /* Maintaining aspect ratio */
+            }
+        }
+
+        @media (max-width: 375px) {
+            .match {
+                font-size: 14px;
+                text-align: left;
+                font-weight: 500;
+                padding: 4px 0;
+            }
+            .modal {
+                width: 95%;
+            }
+            .modal iframe {
+                height: 56.25vw; /* Maintaining aspect ratio */
+            }
+        }
     </style>
-  </head>
-  <body>
-    <!-- Header Bar -->
-    <header class="header">
-      <div class="logo">Orix TV</div>
-      <div class="nav-links">
-        <a href="#home">Home</a>
-        <a href="#live-stream">Live Stream</a>
-        <a href="#contact">Contact</a>
-      </div>
+</head>
+<body>
+    <header>
+        <h1>Orix TV</h1>
     </header>
 
-    <h1 class="writer-css">
-      <span class="typewriter" id="typewriterText"></span>
-    </h1>
     <div class="mtch-anno">Use either link 1, 2, or 3 on the player.</div>
 
     <!-- Match List -->
     <div class="match-list">
-      <!-- Match Items -->
-      <div
-        class="match"
-        onclick="openModal('https://richwonder84k.github.io/richds/eplplayer1.html', 'Southampton vs Manchester United')"
-      >
-        <span class="evmat">11:30 Southampton vs Manchester United</span>
-        <span class="emat"><img src="https://richwonder84k.github.io/richds/01England.jpg" alt="ENG logo" /></span>
-      </div>
-      <!-- Add other matches here as needed -->
+        <!-- Match 1 -->
+        <div class="match" onclick="openModal('https://richwonder84k.github.io/richds/eplplayer1.html', 'Southampton vs Manchester United')">
+            <span class="evmat">11:30 Southampton vs Manchester United</span>
+            <span class="emat"><img src="https://richwonder84k.github.io/richds/01England.jpg" alt="ENG logo" /></span>
+        </div>
+        <!-- Match 2 -->
+        <div class="match" onclick="openModal('https://richwonder84k.github.io/richds/orixtvplayer1.html', 'Brighton vs Ipswich Town')">
+            <span class="evmat">14:00 Brighton vs Ipswich Town</span>
+            <span class="emat"><img src="https://richwonder84k.github.io/richds/01England.jpg" alt="ENG logo" /></span>
+        </div>
+        <!-- Match 3 -->
+        <div class="match" onclick="openModal('https://richwonder84k.github.io/richds/eplplayer1.html', 'Crystal Palace vs Leicester City')">
+            <span class="evmat">14:00 Crystal Palace vs Leicester City</span>
+            <span class="emat"><img src="https://richwonder84k.github.io/richds/01England.jpg" alt="ENG logo" /></span>
+        </div>
+        <!-- Match date -->
+        <div class="dat-date">Saturday, Sept 14th, 2024</div>
+        <!-- Match 4 -->
+        <div class="match" onclick="openModal('https://richwonder84k.github.io/richds/eplplayer1.html', 'Fulham vs West Ham United')">
+            <span class="evmat">14:00 Fulham vs West Ham United</span>
+            <span class="emat"><img src="https://richwonder84k.github.io/richds/01England.jpg" alt="ENG logo" /></span>
+        </div>
+        <!-- Match 5 -->
+        <div class="match" onclick="openModal('https://richwonder84k.github.io/richds/eplplayer1.html', 'Liverpool vs Nottingham Forest')">
+            <span class="evmat">14:00 Liverpool vs Nottingham Forest</span>
+            <span class="emat"><img src="https://richwonder84k.github.io/richds/01England.jpg" alt="ENG logo" /></span>
+        </div>
+        <!-- Match 6 -->
+        <div class="match" onclick="openModal('https://richwonder84k.github.io/richds/eplplayer1.html', 'Manchester City vs Brentford')">
+            <span class="evmat">14:00 Manchester City vs Brentford</span>
+            <span class="emat"><img src="https://richwonder84k.github.io/richds/01England.jpg" alt="ENG logo" /></span>
+        </div>
+        <!-- Match 7 -->
+        <div class="match" onclick="openModal('https://richwonder84k.github.io/richds/eplplayer1.html', 'Aston Villa vs Everton')">
+            <span class="evmat">16:30 Aston Villa vs Everton</span>
+            <span class="emat"><img src="https://richwonder84k.github.io/richds/01England.jpg" alt="ENG logo" /></span>
+        </div>
+        <!-- Match 8 -->
+        <div class="match" onclick="openModal('https://richwonder84k.github.io/richds/eplplayer1.html', 'AFC Bournemouth vs Chelsea')">
+            <span class="evmat">19:00 AFC Bournemouth vs Chelsea</span>
+            <span class="emat"><img src="https://richwonder84k.github.io/richds/01England.jpg" alt="ENG logo" /></span>
+        </div>
     </div>
 
     <!-- Modal -->
     <div id="myModal" class="modal">
-      <div class="modal-content">
-        <div id="matchName" class="modal-header"></div>
-        <span class="close-btn" onclick="closeModal()">&times;</span>
-        <iframe id="modalIframe" src="" allowfullscreen style="border: none;"></iframe>
-      </div>
+        <div class="modal-content">
+            <div id="matchName" class="modal-header"></div>
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <iframe id="modalIframe" src="" allowfullscreen style="border: none; overflow: hidden;"></iframe>
+        </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <p>&copy; 2024 Orix TV. All rights reserved.</p>
-      <div class="social-icons">
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-      </div>
+    <footer>
+        <a href="#terms">Terms of Use</a>
+        <a href="#privacy">Privacy Policy</a>
+        <a href="#contact">Contact Us</a>
+        <a href="#disclaimer">Disclaimer</a>
+        <a href="#dmca">DMCA - Orix TV</a>
     </footer>
 
     <script>
-      function openModal(src, matchName) {
-        const modal = document.getElementById('myModal');
-        const iframe = document.getElementById('modalIframe');
-        const matchHeader = document.getElementById('matchName');
-
-        iframe.src = src;
-        matchHeader.textContent = matchName;
-        modal.style.display = 'block';
-      }
-
-      function closeModal() {
-        const modal = document.getElementById('myModal');
-        const iframe = document.getElementById('modalIframe');
-
-        iframe.src = '';
-        modal.style.display = 'none';
-      }
-
-      window.onclick = function (event) {
-        const modal = document.getElementById('myModal');
-        if (event.target == modal) {
-          closeModal();
+        function openModal(src, match) {
+            document.getElementById('modalIframe').src = src;
+            document.getElementById('matchName').innerText = match;
+            document.getElementById('myModal').style.display = 'block';
         }
-      };
+
+        function closeModal() {
+            document.getElementById('myModal').style.display = 'none';
+            document.getElementById('modalIframe').src = ''; // Clear the src to stop the video
+        }
     </script>
-  </body>
+</body>
 </html>
